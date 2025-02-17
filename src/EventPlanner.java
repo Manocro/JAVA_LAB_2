@@ -20,7 +20,6 @@ public class EventPlanner {
 
     /**
      * Adds demonstration events to the list
-     * @param eventsPanel Target panel to receive events
      */
     public static void addDefaultEvents(EventListPanel eventsPanel) {
         eventsPanel.addEvent(new Deadline("Submit Lab 2",

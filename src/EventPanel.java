@@ -57,7 +57,14 @@ public class EventPanel extends JPanel {
     }
 
     private void updateCompletionState() {
-        // Visual feedback implementation
+        Component[] comps = getComponents();
+        for (Component comp : comps) {
+            if (comp instanceof JLabel label) {
+                label.setForeground(((Completable) event).isComplete()
+                        ? Color.GRAY
+                        : Color.BLACK);
+            }
+        }
         revalidate();
         repaint();
     }
