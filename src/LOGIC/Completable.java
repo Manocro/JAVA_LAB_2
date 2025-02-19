@@ -1,3 +1,5 @@
+package LOGIC;
+
 public interface Completable {
     // Marks the event as completed
     void complete();

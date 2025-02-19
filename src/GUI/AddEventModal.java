@@ -1,3 +1,8 @@
+package GUI;
+
+import LOGIC.Deadline;
+import LOGIC.Meeting;
+
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
@@ -23,7 +28,7 @@ public class AddEventModal extends JDialog {
     private void setupUI() {
         JPanel mainPanel = new JPanel(new GridLayout(0, 2, 5, 5));
 
-        // Event type selector
+        // LOGIC.Event type selector
         mainPanel.add(new JLabel("Event Type:"));
         typeCombo = new JComboBox<>(new String[]{"Deadline", "Meeting"});
         mainPanel.add(typeCombo);
@@ -38,7 +43,7 @@ public class AddEventModal extends JDialog {
         dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "MM/dd/yyyy HH:mm"));
         mainPanel.add(dateSpinner);
 
-        // Meeting-specific fields
+        // LOGIC.Meeting-specific fields
         mainPanel.add(new JLabel("End Date/Time:"));
         endDateSpinner = new JSpinner(new SpinnerDateModel());
         endDateSpinner.setEditor(new JSpinner.DateEditor(endDateSpinner, "MM/dd/yyyy HH:mm"));

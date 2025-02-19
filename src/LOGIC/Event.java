@@ -1,3 +1,5 @@
+package LOGIC;
+
 import java.time.LocalDateTime;
 
 public abstract class Event implements Comparable<Event> {

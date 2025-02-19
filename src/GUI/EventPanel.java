@@ -1,3 +1,9 @@
+package GUI;
+
+import LOGIC.Completable;
+import LOGIC.Event;
+import LOGIC.Meeting;
+
 import javax.swing.*;
 import java.awt.*;
 import java.time.Duration;
@@ -6,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class EventPanel extends JPanel {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mm a");
 
-    private final Event event;
+    private final LOGIC.Event event;
     private JLabel nameLabel; // Store the name label as a field to update it later
 
     public EventPanel(Event event) {

@@ -1,12 +1,18 @@
+package GUI;
+
+import LOGIC.Completable;
+import LOGIC.Deadline;
+import LOGIC.Event;
+import LOGIC.Meeting;
+
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
 import java.awt.event.ActionListener;
 
 public class EventListPanel extends JPanel {
-    private List<Event> events = new ArrayList<>();
+    private List<LOGIC.Event> events = new ArrayList<>();
     private JPanel displayPanel = new JPanel();
     private JComboBox<String> sortDropDown;
     private JCheckBox hideCompletedCheck;
@@ -52,7 +58,7 @@ public class EventListPanel extends JPanel {
 
         add(controlPanel, BorderLayout.NORTH);
 
-        JButton addButton = new JButton("Add Event");
+        JButton addButton = new JButton("Add LOGIC.Event");
         addButton.addActionListener(e -> {
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             new AddEventModal(topFrame, EventListPanel.this).setVisible(true);
@@ -60,32 +66,32 @@ public class EventListPanel extends JPanel {
         controlPanel.add(addButton);
     }
 
-    public void addEvent(Event event) {
+    public void addEvent(LOGIC.Event event) {
         events.add(event);
         refreshDisplay();
     }
 
     private void refreshDisplay() {
         List<Event> filtered = applyFilters();
-        List<Event> sorted = applySorting(filtered);
+        List<LOGIC.Event> sorted = applySorting(filtered);
 
         displayPanel.removeAll();
-        for (Event event : sorted) {
+        for (LOGIC.Event event : sorted) {
             displayPanel.add(new EventPanel(event));
         }
         displayPanel.revalidate();
         displayPanel.repaint();
     }
 
-    private List<Event> applyFilters() {
-        List<Event> result = new ArrayList<>();
-        for (Event event : events) {
+    private List<LOGIC.Event> applyFilters() {
+        List<LOGIC.Event> result = new ArrayList<>();
+        for (LOGIC.Event event : events) {
             if (shouldShow(event)) result.add(event);
         }
         return result;
     }
 
-    private boolean shouldShow(Event event) {
+    private boolean shouldShow(LOGIC.Event event) {
         // Completion filter
         if (hideCompletedCheck.isSelected() && event instanceof Completable c) {
             if (c.isComplete()) return false;
@@ -98,11 +104,11 @@ public class EventListPanel extends JPanel {
         return true;
     }
 
-    private List<Event> applySorting(List<Event> events) {
-        Comparator<Event> comparator = switch (sortDropDown.getSelectedIndex()) {
-            case 0 -> Comparator.comparing(Event::getDateTime);
+    private List<LOGIC.Event> applySorting(List<LOGIC.Event> events) {
+        Comparator<LOGIC.Event> comparator = switch (sortDropDown.getSelectedIndex()) {
+            case 0 -> Comparator.comparing(LOGIC.Event::getDateTime);
             case 1 -> (e1, e2) -> e2.getDateTime().compareTo(e1.getDateTime());
-            case 2 -> Comparator.comparing(Event::getName);
+            case 2 -> Comparator.comparing(LOGIC.Event::getName);
             case 3 -> (e1, e2) -> e2.getName().compareToIgnoreCase(e1.getName());
             default -> (e1, e2) -> 0;
         };
