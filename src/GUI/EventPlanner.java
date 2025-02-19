@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class EventPlanner {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("LOGIC.Event Planner");
+            JFrame frame = new JFrame("Event Planner");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(800, 600);
 
